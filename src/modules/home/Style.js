@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import imgBackground from '../../assets/images/background.svg';
 
 export const ContainerHeader = styled.div`
     position: relative;
     height: 600px;
-    background-image: url('../assets/images/background.svg');
+    background-image: url(${imgBackground});
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,15 +27,15 @@ export const ItemDatas = styled.div`
 `;
 
 export const LogoMeraki = styled.div`
-    width: 50px;
-    & img{
-
+    img{
+        width: 50px;
     }
 `;
 
-export const TitleHeader = styled.p`
-    font-size: 40px;
-    margin-top: 20px;
+export const TitleHeader = styled.div`
+        font-size: 30px;
+        margin-top: 20px;
+        margin-bottom: 30px;
 `;
 
 export const SubTitle = styled.p`

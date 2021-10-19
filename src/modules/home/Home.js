@@ -1,34 +1,67 @@
 import React from 'react';
-import { Title } from '../diary/components/list-document/Style';
-import Button from '../shared/button/Button';
+import {
+    ContainerHeader, 
+    ContainerHeaderShadow, 
+    ItemDatas, 
+    LogoMeraki, 
+    TitleHeader, 
+    SubTitle, 
+    Button, 
+    ContainerServices, 
+    Title, 
+    ContainerListItems, 
+    Item, 
+    ItemTitle, 
+    ItemSubTitle, 
+    ContainerWho, 
+    Description, 
+    ContainerFooter, 
+    FooterTitle, 
+    Contact, 
+} from './Style';
+import imgLogo from '../../assets/images/tree-white.svg';
+import imgDiary from '../../assets/images/diary-service.svg';
+import imgVideo from '../../assets/images/video-service.svg';
+import imgBreathing from '../../assets/images/control-service.svg';
 
-export default function Home(){
+export default function Home() {
+
+    /*window.onscroll = () => {
+        const menu = document.getElementById("menu");
+        if (document.documentElement.scrollTop > 50) {
+            menu.classList.add('menu-all-show');
+        }
+        else {
+            menu.classList.remove('menu-all-show');
+        }
+    }
+
+    window.onresize = () => {
+        if (document.documentElement.offsetWidth <= 800) {
+            document.getElementById('menu-options').classList.add('hide');
+        }
+        else {
+            document.getElementById('menu-options').classList.remove('hide');
+        }
+    }*/
 
     return (
         <>
             <ContainerHeader>
                 <ContainerHeaderShadow></ContainerHeaderShadow>
                 <ItemDatas>
-                    <img class="logo-maraki" src="../assets/images/tree-white.svg" />
-                <Title>
-                    <p>Vem desabafar aqui, fica tranquilo</p>
-                </Title>
-                <SubTitle>
-                    <p>Crie o seu diário, tenha um histórico do andamento do seu quadro e compartilhe tudo isso com seu terapeuta.</p>
-                </SubTitle>
-                <Button onClick="window.location.href='./plataform/plataform.html'">Começar</Button>
-                </ItemDatas>
 
-                <ItemDatas>
-                <LogoMeraki>
-                    <img src="../assets/images/tree-white.svg" />
-                </LogoMeraki>
-                <Title>
-                    <p>Vem desabafar aqui, fica tranquilo</p></Title>
-                <SubTitle>
-                    <p>Crie o seu diário, tenha um histórico do andamento do seu quadro e compartilhe tudo isso com seu terapeuta.</p>
-                </SubTitle>
-                <Button onClick="window.location.href='./plataform/plataform.html'">Começar</Button>
+                    <LogoMeraki>
+                        <img src={imgLogo} />
+                    </LogoMeraki>
+
+                    <TitleHeader>
+                        <p>Vem desabafar aqui, fica tranquilo</p>
+                    </TitleHeader>
+                    <SubTitle>
+                        <p>Crie o seu diário, tenha um histórico do andamento do seu quadro e compartilhe tudo isso com seu terapeuta.</p>
+                    </SubTitle>
+                    <Button onClick="window.location.href='./plataform/plataform.html'">Começar</Button>
                 </ItemDatas>
             </ContainerHeader>
 
@@ -36,7 +69,7 @@ export default function Home(){
                 <Title><p>Nossos serviços</p></Title>
                 <ContainerListItems>
                     <Item>
-                        <img src="../assets/images/diary-service.svg" />
+                        <img src={imgDiary} />
                         <ItemTitle>
                             <p>Diário</p>
                         </ItemTitle>
@@ -45,7 +78,7 @@ export default function Home(){
                         </ItemSubTitle>
                     </Item>
                     <Item>
-                        <img src="../assets/images/video-service.svg" />
+                        <img src={imgVideo} />
                         <ItemTitle>
                             <p>Videos motivacionais</p>
                         </ItemTitle>
@@ -54,7 +87,7 @@ export default function Home(){
                         </ItemSubTitle>
                     </Item>
                     <Item>
-                        <img src="../assets/images/control-service.svg" />
+                        <img src={imgBreathing} />
                         <ItemTitle>
                             <p>Controle de respiração</p>
                         </ItemTitle>
@@ -69,7 +102,7 @@ export default function Home(){
                 <Title>Quem somos?</Title>
                 <Description>
                     <p>
-                    Assim mesmo, a mobilidade dos capitais internacionais talvez venha a ressaltar a relatividade do retorno esperado a longo prazo. Todas estas questões, devidamente ponderadas, levantam dúvidas sobre se o novo modelo estrutural aqui preconizado agrega valor ao estabelecimento dos relacionamentos verticais entre as hierarquias. Ainda assim, existem dúvidas a respeito de como o fenômeno da Internet garante a contribuição de um grupo importante na determinação de todos os recursos funcionais envolvidos.
+                        Assim mesmo, a mobilidade dos capitais internacionais talvez venha a ressaltar a relatividade do retorno esperado a longo prazo. Todas estas questões, devidamente ponderadas, levantam dúvidas sobre se o novo modelo estrutural aqui preconizado agrega valor ao estabelecimento dos relacionamentos verticais entre as hierarquias. Ainda assim, existem dúvidas a respeito de como o fenômeno da Internet garante a contribuição de um grupo importante na determinação de todos os recursos funcionais envolvidos.
                     </p>
                 </Description>
             </ContainerWho>
@@ -84,7 +117,7 @@ export default function Home(){
                     <p>contato@meraki.com.br</p>
                 </Contact>
             </ContainerFooter>
-            
+
 
 
 
