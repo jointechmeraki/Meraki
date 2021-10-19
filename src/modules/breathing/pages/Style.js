@@ -39,7 +39,6 @@ export const CardTime = styled.div`
     font-size: 45px;
 `;
 
-
 export const Separator = styled.div`
     display: flex;
     align-items: center;

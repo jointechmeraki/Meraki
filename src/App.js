@@ -1,12 +1,9 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import './assets/css/fonts.css';
-import './assets/css/inputs.css';
-import './assets/css/reset.css';
-import './assets/css/style.css';
 import Routers from './modules/_routers/Routers'
 import Menu from './modules/shared/menu/Menu';
-
+import { BrowserRouter } from 'react-router-dom';
+import { NotificationContainer } from 'react-notifications';
+import './assets/css/style.css';
 
 export default function App() {
   return (
@@ -17,6 +14,8 @@ export default function App() {
           <Routers></Routers>
         </div>
       </BrowserRouter>
+
+      <NotificationContainer/>
     </div>
   );
 }

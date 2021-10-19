@@ -1,5 +1,7 @@
 @import url('./inputs.css');
 @import url('./fonts.css');
+@import url('./reset.css');
+@import url('react-notifications/lib/notifications.css');
 
 :root
 {
@@ -53,9 +55,10 @@ iframe
 body
 {
     color: var(--font-light);
+    background-color: var(--background);
     font-size: 12px;
     font-family: 'Regular';
-    background-color: var(--background);
+    line-height: 16px;
 }
 
 .pointer
