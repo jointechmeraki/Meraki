@@ -1,0 +1,80 @@
+@import url('./inputs.css');
+@import url('./fonts.css');
+
+:root
+{
+    /* Utils */
+    --transition: 0.4s ease-in-out;
+    --shadow: 0 3px 6px #00000016;
+    --width-mobile: 800px;
+    
+    /* Cores primitivas */
+    --white: #fff;
+    --black: #000;
+    --black-light: #3C3C3C;
+
+    /* Defaults */
+    --primary: #6E72B7;
+    --primary-hover: #361250;
+    
+    /* Fonts */
+    --font: #0F214E;
+    --font-light: #4A5A7F;
+    --placeholder: #96a0b5;
+    
+    /* Backgrounds */
+    --background: #F6F7F8;
+    
+    /* Actions */
+    --action: #3B67F2;
+    --action-hover: #2C2ECE;
+
+    /* Bordas */
+    --border-light: #DEDEDE;
+
+    /* Status */
+    --error: #f23d4f;
+    --error-light: #FBC4CA;
+    --error-hover: #be3240;
+    --warning: #ff9966;
+    --warning-light: #FFE0D1;
+    --warning-hover: #F47A3D;
+    --success: #1eb600;
+    --success-light: #D8E9D8;
+    --success-hover: #1e8809;
+}
+
+iframe 
+{
+    width: 100%;
+    height: 100%;
+}
+
+body
+{
+    color: var(--font-light);
+    font-size: 12px;
+    font-family: 'Regular';
+    background-color: var(--background);
+}
+
+.pointer
+{
+    cursor: pointer;
+}
+
+.hide
+{
+    display: none !important;
+}
+
+.flex-default
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-page{
+    margin-top: 70px;
+}

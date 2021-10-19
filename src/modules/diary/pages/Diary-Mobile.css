@@ -1,0 +1,12 @@
+@media only screen and (max-width: 1000px)
+{
+    .btn-action
+    {
+        display: none;
+    }
+
+    .container-card
+    {
+        width: 100%;
+    }
+}
