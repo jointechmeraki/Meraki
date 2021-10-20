@@ -1,4 +1,5 @@
-import { React, Component } from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 import Button from '../../shared/button/Button';
 import Loading from '../../shared/loading/Loading';
 import { 
@@ -18,13 +19,34 @@ class Auth extends Component
         super(props);
     
         this.state = {
-          loading: false
+          loading: false,
+          email: "",
+          password: ""
         };
     }
 
     insertOrLogin() 
     {
+        if (!this.state.email || !this.state.password)
+        {
+            NotificationManager.error('Preencha os campos e tente novamente.');
+            return;
+        }
+
         this.setState({ loading: true });
+        const data = { email: this.state.email, password: this.state.password };
+        
+        axios.post(`${process.env.REACT_APP_URL_API}user/login`, data).then(resp => 
+        {
+            console.log(resp);
+            this.setState({ loading: false });
+        })
+        .catch(error => 
+        {
+            console.log(error);
+            this.setState({ loading: false });
+            NotificationManager.error('Login inválido.');
+        });
     }
 
     render() 
@@ -43,11 +65,17 @@ class Auth extends Component
                         
                         {/* Email */}
                         <p className="label">E-mail</p>
-                        <input placeholder="Digite seu e-mail..." />                      
+                        <input 
+                            placeholder="Digite seu e-mail..." 
+                            onKeyPress={(event) => event.key == 'Enter' ? this.insertOrLogin() : null}
+                            onChange={event => this.state.email = event.target.value} />
                         
                         {/* Senha */}
                         <p className="label">Senha</p>
-                        <input placeholder="Digite sua senha..." />
+                        <input 
+                            placeholder="Digite sua senha..." 
+                            onKeyPress={(event) => event.key == 'Enter' ? this.insertOrLogin() : null}
+                            onChange={event => this.state.password = event.target.value} />
                     </ContainerForm>                  
                     
                     {/* Forgot password */}
