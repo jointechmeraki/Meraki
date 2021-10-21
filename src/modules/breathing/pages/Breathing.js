@@ -36,7 +36,7 @@ export class Breathing extends Component
                         <ControlGif>
                             <img src={ControlGifImage} />
                         </ControlGif>
-                        <MessageGif>Mantenha sua respiração com a mesma frequencia da bolinha...</MessageGif>
+                        <MessageGif>Mantenha sua respiração na mesma frequencia da bolinha...</MessageGif>
                     </div>
                 </ContainerPage>
             </>
