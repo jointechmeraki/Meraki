@@ -11,12 +11,12 @@ export default function Routers() {
     return (
         <div className="container-navigation">
             <Switch>
-                <Route path="/" component={Diary} exact />
+                <Route path="/" component={Home} exact />
+                <Route path="/diary" component={Diary} />
                 <Route path="/motivacional-videos" component={MotivationalVideos} />
                 <Route path="/breathing" component={Breathing.render} />
-                <Route path="/profile" component={Profile}/>
-                <Route path="/home" component={Home}/>
-                <Route path="/auth" component={Auth}/>
+                <Route path="/profile" component={Profile} />
+                <Route path="/auth" component={Auth} />
             </Switch>
         </div>
     );

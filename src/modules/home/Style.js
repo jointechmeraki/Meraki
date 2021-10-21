@@ -4,6 +4,7 @@ import imgBackground from '../../assets/images/background.svg';
 export const ContainerHeader = styled.div`
     position: relative;
     height: 600px;
+    margin-top: -70px;
     background-image: url(${imgBackground});
     display: flex;
     align-items: center;

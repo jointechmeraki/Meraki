@@ -11,7 +11,9 @@ export default function VideoCard(props)
                 <p>{comment.userName}</p>
                 <Value>{comment.value}</Value>
             </Comments>
-        </>);
+        </>
+    );
+
     return (
         <>
            <ContainerCard>
