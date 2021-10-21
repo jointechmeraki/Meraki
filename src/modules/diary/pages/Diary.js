@@ -28,7 +28,7 @@ export default function Diary()
                     <CardDashboard title="Documentos do dia" value="2"></CardDashboard>
                 </ContainerMiniDashboard>
             
-                {/*Day list*/}
+                {/* Day list */}
                 <ListDocument title="Documentos do dia" />
                 
                 {/*Historic list*/}
