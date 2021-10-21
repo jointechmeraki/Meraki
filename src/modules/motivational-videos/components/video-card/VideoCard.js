@@ -5,13 +5,16 @@ import {ContainerCard, ContainerVideo, ContainerHeaderCard, TitleCard, AllComent
 export default function VideoCard(props) 
 {
 
-    const commentsList = props.Listcomments.map((comment) => 
+    const commentsList = props.comments.map((comment) => 
         <>
             <Comments>
-                <p>{comment.userName}</p>
-                <Value>{comment.value}</Value>
+                <p>{comment.comment.user.name}</p>
+                <Value>{comment.comment.comment}</Value>
             </Comments>
-        </>);
+        </>
+    );
+
+
     return (
         <>
            <ContainerCard>
