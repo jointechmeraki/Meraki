@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function isHome()
 {
   const url = window.location.href;
-  if (url.includes('/home')) return true;
+  if (url.includes('/')) return true;
 
   return false;
 }
@@ -33,7 +33,7 @@ function getOptions()
 
     return <>
         <ContainerOptions>
-            <ContainerItem><Link to="/">Diário</Link></ContainerItem>
+            <ContainerItem><Link to="/diary">Diário</Link></ContainerItem>
             <ContainerItem><Link to="/motivacional-videos">Vídeos Motivacionais</Link></ContainerItem>
             <ContainerItem><Link to="/breathing">Respiração</Link></ContainerItem>
             <ContainerItem><Link to="/profile">Perfil</Link></ContainerItem>

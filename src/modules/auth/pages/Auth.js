@@ -20,8 +20,8 @@ class Auth extends Component
     
         this.state = {
           loading: false,
-          email: "",
-          password: ""
+          email: "rdanilchenko0@columbia.edu",
+          password: "Ap60iSzLttO"
         };
     }
 
@@ -42,7 +42,7 @@ class Auth extends Component
             window.localStorage.setItem("userId", resp.data.id);
 
             // Navigate to home
-            window.location.href = "http://localhost:3000/"
+            window.location.href = "http://localhost:3000/diary"
         })
         .catch(error => 
         {

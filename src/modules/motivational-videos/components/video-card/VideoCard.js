@@ -13,8 +13,6 @@ export default function VideoCard(props)
             </Comments>
         </>
     );
-
-
     return (
         <>
            <ContainerCard>
