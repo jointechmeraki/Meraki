@@ -1,8 +1,113 @@
+import React, { Component } from 'react';
+import axios from 'axios';
+import Loading from '../../shared/loading/Loading';
+import { NotificationManager } from 'react-notifications';
 import VideoCard from '../components/video-card/VideoCard';
 import {ContainerPage} from './Style'
 
 
-export default function MotivationalVideos() 
+class MotivationalVideos extends Component
+{
+
+    constructor(props)
+    {
+        super(props);
+
+        this.state ={
+            loading: false,
+            listCardVideos: []
+
+        };
+        this.getVideos();
+    }
+
+    getVideos()
+    {
+        this.setState({loading: true});
+        axios.get(`${process.env.REACT_APP_URL_API}motivationVideos/getByComments`).then(resp => 
+            {
+                this.buildCardVideo(resp.data)
+                this.setState({ loading : false});
+            })
+            .catch(error => 
+            {
+                console.log(error);
+                this.setState({ loading: false });
+                NotificationManager.error('Erro ao buscar vídeos');
+            });
+    
+    }
+
+    buildCardVideo(listVideo)
+    {
+        if(!this.state.loading){
+            for(let i = 0; i < listVideo.length ; i++)
+            {
+                this.state.listCardVideos.push(
+                    <>
+                        <VideoCard 
+                            url={listVideo[i].video.url}
+                            title={listVideo[i].video.description}
+                            comments={listVideo[i].comments}>
+                        </VideoCard>
+                    </>
+                )
+            }
+        }
+    }
+
+    render()
+    {
+        return(
+            <>
+           <ContainerPage>
+                {/* <Loading marginTop="24px" /> */}
+               {this.state.loading ? <Loading marginTop="24px" /> : this.state.listCardVideos}
+           </ContainerPage>
+        </>
+        );
+    }
+
+}
+
+export default MotivationalVideos;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/*export default function MotivationalVideos() 
 {
     const comments = [
         {
@@ -15,7 +120,7 @@ export default function MotivationalVideos()
         }
 
     ]
-    
+
     return (
         <>
            <ContainerPage>
@@ -82,4 +187,6 @@ export default function MotivationalVideos()
            </ContainerPage>
         </>
     );
+    
 }
+*/}
