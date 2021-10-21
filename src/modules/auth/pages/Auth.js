@@ -38,8 +38,11 @@ class Auth extends Component
         
         axios.post(`${process.env.REACT_APP_URL_API}user/login`, data).then(resp => 
         {
-            console.log(resp);
             this.setState({ loading: false });
+            window.localStorage.setItem("userId", resp.data.id);
+
+            // Navigate to home
+            window.location.href = "http://localhost:3000/"
         })
         .catch(error => 
         {
