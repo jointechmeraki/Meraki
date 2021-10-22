@@ -45,20 +45,44 @@ class Profile extends Component
         }
     }
 
+    save()
+    {
+        const id = window.localStorage.getItem("userId");
+        const data = { email: this.state.email, name: this.state.name, id: id};
+        axios.put(`${process.env.REACT_APP_URL_API}user/update`, data).then(resp => 
+            {
+                debugger
+                this.setState({ loading: false });
+                this.setState({ email: resp.data.email });
+                this.setState({ name: resp.data.name });
+
+                
+                NotificationManager.success('Alteração feita com sucesso.');
+            })
+            .catch(error => 
+            {
+                debugger
+                console.log(error);
+                this.setState({ loading: false });
+                NotificationManager.error('Falha na alteração.');
+            });
+    }
+
     getUserById()
     {
-        this.setState({ loadingDashboard: true });
+        this.setState({ loading: true });
         const userId = window.localStorage.getItem("userId");
         axios.get(`${process.env.REACT_APP_URL_API}user/${userId}`).then(resp => 
         {
-            this.setState({ dashboardData: resp.data });
-            this.setState({ loadingDashboard: false });
+            this.setState({ name: resp.data.name });
+            this.setState({ email: resp.data.email });
+            this.setState({ loading: false });
         })
         .catch(error => 
         {
             console.log(error);
-            this.setState({ loadingDashboard: false });
-            NotificationManager.error('Erro ao buscar os dados de dashboard.');
+            this.setState({ loading: false });
+            NotificationManager.error('Erro ao buscar o usuário.');
         });
     }
 
@@ -77,21 +101,30 @@ class Profile extends Component
                                     <i class="fas fa-camera-retro"></i>
                                 </ButtonAdd>
                             </AddImage>
-                            <UserName>Guilherme</UserName>
+                            <UserName>{this.state.name}</UserName>
                         </CardsUserCard>
                         <CardsUserDatas>
                             <FlexDefault>
                                 <ContainerInput>
                                     <p>Nome</p>
-                                    <input placeholder="Nome" value="Guilherme Nunes" />
+                                    <input 
+                                        placeholder="Nome" 
+                                        value={this.state.name} 
+                                        onKeyPress={(event) => event.key == 'Enter' ? this.save() : null}
+                                        onChange={event => this.setState({name: event.target.value})} />
+                                        
                                 </ContainerInput>
                                 <ContainerInput>
                                     <p>Email</p>
-                                    <input placeholder="Email" value="RM86614@fiap.com.br" />
+                                    <input 
+                                        placeholder="Email"
+                                        value={this.state.email} 
+                                        onKeyPress={(event) => event.key == 'Enter' ? this.save() : null}
+                                        onChange={event => this.setState({email: event.target.value})} />
                                 </ContainerInput>
                             </FlexDefault>
                             <ContainerButton>
-                                <Button label="Salvar" />
+                                <Button label="Salvar" onClick={() => this.save()}/>
                             </ContainerButton>
                         </CardsUserDatas>
                     </ContainerHeader>
