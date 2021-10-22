@@ -54,6 +54,13 @@ export const Tag = styled.div`
     background-color: var(--font-light);
 `;
 
+export const ContainerAnimated = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+`;
+
 export const ContainerButton = styled.div`
     position: absolute;
     display: flex;
@@ -86,4 +93,5 @@ export const MessageGif = styled.p`
     font-size: 21px;
     width: 400px;
     text-align: center;
+    line-height: 27px;
 `;

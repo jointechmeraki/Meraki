@@ -40,9 +40,12 @@ class MotivationalVideos extends Component
         this.setState({ hasError: false });
         axios.get(`${process.env.REACT_APP_URL_API}motivationVideos/getByComments`).then(resp => 
         {
+            this.setState(() => ({
+                listCardVideos: resp.data.map(item => item)
+            }));
+            console.clear();
+            console.log(this.state.listCardVideos);
             this.setState({ loading : false });
-            // this.buildCardVideo(resp.data);
-            this.state.listCardVideos = resp.data;
         })
         .catch(error => 
         {
@@ -53,23 +56,21 @@ class MotivationalVideos extends Component
         });
     }
 
-    buildCardVideo()
+    buildCards() 
     {
-        const listCards = [];
-        for(let i = 0; i < this.state.listCardVideos.length ; i++)
-        {
-            listCards.push(
-                <>
+        const response = [];
+        this.state.listCardVideos.map(item => {
+            response.push(<>
                     <VideoCard 
-                        url={this.state.listCardVideos[i].video.url}
-                        title={this.state.listCardVideos[i].video.description}
-                        comments={this.state.listCardVideos[i].comments}>
+                        url={item.video.url}
+                        title={item.video.description}
+                        comments={item.comments}>
                     </VideoCard>
                 </>
             );
-        }
-        
-        return listCards;
+        });
+
+        return response;
     }
 
     render()
@@ -79,13 +80,13 @@ class MotivationalVideos extends Component
                 <ContainerPage>
                     {
                         this.state.loading ? 
-                            <Loading marginTop="24px" /> : 
-                                (this.state.hasError || this.state.listCardVideos.length <= 0) ? 
-                                    <NotFound
-                                        marginTop="32px"
-                                        image={ImageEmpty}
-                                        message="Nenhum video foi encontrado..." /> : 
-                                    this.buildCardVideo()
+                        <Loading marginTop="24px" /> : 
+                            (this.state.hasError || this.state.listCardVideos.length <= 0) ? 
+                                <NotFound
+                                    marginTop="32px"
+                                    image={ImageEmpty}
+                                    message="Nenhum video foi encontrado..." /> : 
+                                this.buildCards()
                     }
                 </ContainerPage>
             </>

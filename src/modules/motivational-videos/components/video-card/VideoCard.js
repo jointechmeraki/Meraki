@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import {ContainerCard, ContainerVideo, ContainerHeaderCard, TitleCard, AllComents, ContainerListComments, Comments, Value} from './Style'
 
-
 export default function VideoCard(props) 
 {
-    const commentsList = props.comments.map((comment) => 
-        <>
-            <Comments>
-                <p>{comment.comment.user.name}</p>
-                <Value>{comment.comment.comment}</Value>
-            </Comments>
-        </>
-    );
+    let commentsList;
+    if (props.comments)
+    {
+        commentsList = props.comments.map((comment) => 
+            <>
+                <Comments>
+                    <p>{comment.comment.user.name}</p>
+                    <Value>{comment.comment.comment}</Value>
+                </Comments>
+            </>
+        );
+    }
     
     return (
         <>
@@ -30,7 +33,7 @@ export default function VideoCard(props)
                 </ContainerHeaderCard>
                 <AllComents>
                     <ContainerListComments>
-                        {commentsList}
+                        {commentsList || null}
                     </ContainerListComments>
                 </AllComents>
            </ContainerCard>

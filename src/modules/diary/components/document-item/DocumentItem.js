@@ -1,26 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { ContainerItem, ContainerOptions, HeaderItem, TitleItem, ValueItem } from './Style';
+import NewDocument from '../new-document/NewDocument';
 
-export default function DocumentItem(props) 
+class DocumentItem extends Component
 {
-    return (
-        <>
-            <ContainerItem>
+    constructor(props)
+    {
+        super(props);
 
-                {/*Header*/}
-                <HeaderItem>
-                    <TitleItem>{props.title}</TitleItem>
+        this.state = {
+            openModal: false
+        };
+    }
 
-                    {/*Options*/}
-                    <ContainerOptions>
-                        <i className="edit fas fa-edit"></i>
-                        <i className="remove fas fa-trash-alt"></i>
-                    </ContainerOptions>
-                </HeaderItem>
+    render() 
+    {
+        return (
+            <>
+                <ContainerItem>
+    
+                    {/*Header*/}
+                    <HeaderItem>
+                        <TitleItem>{this.props.diary.name}</TitleItem>
+    
+                        {/*Options*/}
+                        <ContainerOptions>
+                            <i className="edit fas fa-edit" onClick={() => this.setState({ openModal: true })}></i>
+                            <i className="remove fas fa-trash-alt"></i>
+                        </ContainerOptions>
+                    </HeaderItem>
+    
+                    {/* Value */}
+                    <ValueItem>{this.props.diary.value}</ValueItem>
+                </ContainerItem>
 
-                {/* Value */}
-                <ValueItem>{props.message}</ValueItem>
-            </ContainerItem>
-        </>
-    );
+                {/* Modal */}
+                {this.state.openModal && <NewDocument diary={this.props.diary} closeModal={() => this.props.refreshList()} />}
+            </>
+        );
+    }
 }
+
+export default DocumentItem;

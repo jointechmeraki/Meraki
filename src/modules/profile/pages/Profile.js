@@ -17,6 +17,7 @@ import Button from '../../shared/button/Button';
 import ProfileImageDefault from '../../../assets/images/user-default.svg';
 import axios from 'axios';
 import { NotificationManager } from 'react-notifications';
+import Loading from '../../shared/loading/Loading';
 
 class Profile extends Component
 {
@@ -49,23 +50,21 @@ class Profile extends Component
     {
         const id = window.localStorage.getItem("userId");
         const data = { email: this.state.email, name: this.state.name, id: id};
+        this.setState({ loading: true });
         axios.put(`${process.env.REACT_APP_URL_API}user/update`, data).then(resp => 
-            {
-                debugger
-                this.setState({ loading: false });
-                this.setState({ email: resp.data.email });
-                this.setState({ name: resp.data.name });
+        {
+            this.setState({ loading: false });
+            this.setState({ email: resp.data.email });
+            this.setState({ name: resp.data.name });
 
-                
-                NotificationManager.success('Alteração feita com sucesso.');
-            })
-            .catch(error => 
-            {
-                debugger
-                console.log(error);
-                this.setState({ loading: false });
-                NotificationManager.error('Falha na alteração.');
-            });
+            NotificationManager.success('Alteração feita com sucesso.');
+        })
+        .catch(error => 
+        {
+            console.log(error);
+            this.setState({ loading: false });
+            NotificationManager.error('Falha na alteração.');
+        });
     }
 
     getUserById()
@@ -86,7 +85,8 @@ class Profile extends Component
         });
     }
 
-    render() {
+    render() 
+    {
         return (
             <>
                 <ContainerPage>
@@ -123,6 +123,7 @@ class Profile extends Component
                                         onChange={event => this.setState({email: event.target.value})} />
                                 </ContainerInput>
                             </FlexDefault>
+                            { this.state.loading ? <Loading marginTop="24px" /> : null }
                             <ContainerButton>
                                 <Button label="Salvar" onClick={() => this.save()}/>
                             </ContainerButton>

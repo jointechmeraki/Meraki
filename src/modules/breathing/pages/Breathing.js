@@ -1,5 +1,5 @@
 import { React, Component} from 'react';
-import {ContainerPage, Title, ContainerCron, CardTime, Separator, Tag, ContainerButton, ControlGif, MessageGif, Hide} from './Style'
+import {ContainerPage, Title, ContainerCron, ContainerAnimated, CardTime, Separator, Tag, ContainerButton, ControlGif, MessageGif, Hide} from './Style'
 import ControlGifImage from '../../../assets/images/control.gif';
 
 export class Breathing extends Component
@@ -31,13 +31,13 @@ export class Breathing extends Component
                             <div id="start-button">Iniciar</div>
                         </ContainerButton>
                     </ContainerCron>
-                    <div>
+                    <ContainerAnimated>
                         <div id="animated-control"></div>
                         <ControlGif>
                             <img src={ControlGifImage} />
                         </ControlGif>
-                        <MessageGif>Mantenha sua respiração na mesma frequencia da bolinha...</MessageGif>
-                    </div>
+                        <MessageGif>Mantenha sua respiração na mesma frequência da bolinha...</MessageGif>
+                    </ContainerAnimated>
                 </ContainerPage>
             </>
         );

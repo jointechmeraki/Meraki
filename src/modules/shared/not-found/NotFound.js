@@ -11,11 +11,16 @@ export default function NotFound(props)
         marginLeft: props.marginLeft,
         marginRight: props.marginRight,
     }; 
+    
+    const styleIcon = 
+    {
+        width: props.width || '100px',
+    }; 
 
     return (
         <>
             <ContainerNotFound style={myStyle}>
-                <img src={props.image || ImageEmpty} />
+                <img style={styleIcon} src={props.image || ImageEmpty} />
                 <p>{props.message || 'Nenhuma informação encontrada.'}</p>
             </ContainerNotFound>
         </>

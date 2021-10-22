@@ -17,7 +17,9 @@ class Diary extends Component
         this.state = {
             openModal: false,
             loadingDashboard: false,
+            loadingTodayDiary: false,
             dashboardData: {},
+            diaryCurrentData: [],
         };
     }
 
@@ -25,6 +27,7 @@ class Diary extends Component
     {
         this.verifyLogin();
         this.getDashboard();
+        this.getTodayDiary();
     }
 
     verifyLogin()
@@ -52,12 +55,31 @@ class Diary extends Component
         });
     }
 
+    getTodayDiary()
+    {
+        this.setState({ loadingTodayDiary: true });
+        const userId = window.localStorage.getItem("userId");
+        axios.get(`${process.env.REACT_APP_URL_API}diary/getTodayByUserId/${userId}`).then(resp => 
+        {
+            console.log(resp.data);
+            this.setState({ diaryCurrentData: resp.data });
+            this.setState({ loadingTodayDiary: false });
+        })
+        .catch(error => 
+        {
+            console.log(error);
+            this.setState({ loadingTodayDiary: false });
+            NotificationManager.error('Erro ao buscar a listagem de diários do dia.');
+        });
+    }
+
     closeModal(realoadPage) 
     {
         this.setState({ openModal: false });
         if (realoadPage)
         {
             this.getDashboard();
+            this.getTodayDiary();
         }
     }
 
@@ -100,8 +122,12 @@ class Diary extends Component
                     </ContainerMiniDashboard>
 
                     {/* Day list */}
-                    <ListDocument title="Documentos do dia" />
-                    
+                    <ListDocument 
+                        title="Documentos do dia"
+                        loading={this.state.loadingTodayDiary}
+                        diaryList={this.state.diaryCurrentData}
+                        refreshList={() => this.getTodayDiary()} />
+                
                     {/*Historic list*/}
                     <ListDocument title="Histórico de documentos" />
                 </ContainerPage>

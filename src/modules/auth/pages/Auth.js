@@ -70,7 +70,7 @@ class Auth extends Component
                         <input 
                             placeholder="Digite seu e-mail..." 
                             onKeyPress={(event) => event.key == 'Enter' ? this.insertOrLogin() : null}
-                            onChange={event => this.state.email = event.target.value} />
+                            onChange={event => this.setState({ email: event.target.value })} />
                         
                         {/* Senha */}
                         <p className="label">Senha</p>
@@ -78,7 +78,7 @@ class Auth extends Component
                             type="password"
                             placeholder="Digite sua senha..." 
                             onKeyPress={(event) => event.key == 'Enter' ? this.insertOrLogin() : null}
-                            onChange={event => this.state.password = event.target.value} />
+                            onChange={event => this.setState({ password: event.target.value })} />
                     </ContainerForm>                  
                     
                     {/* Forgot password */}
