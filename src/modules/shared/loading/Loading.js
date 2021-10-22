@@ -10,15 +10,20 @@ export default function Loading(props) {
         marginRight: props.marginRight,
     }; 
 
+    if (props.center)
+    {
+        myStyle.width = "100%";
+    }
+
     return (
         <>
             <div style={myStyle}>
                 <Center>
                     <ReactLoading 
-                        type="spin" 
+                        type={props.type || 'spin'} 
                         color="#6E72B7" 
-                        height={17} 
-                        width={17} />
+                        height={props.height || 17} 
+                        width={props.width || 17} />
                 </Center>
             </div>
         </>

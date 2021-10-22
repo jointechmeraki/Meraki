@@ -19,9 +19,9 @@ class Auth extends Component
         super(props);
     
         this.state = {
-          loading: false,
-          email: "rdanilchenko0@columbia.edu",
-          password: "Ap60iSzLttO"
+            loading: false,
+            email: "",
+            password: ""
         };
     }
 
@@ -35,7 +35,6 @@ class Auth extends Component
 
         this.setState({ loading: true });
         const data = { email: this.state.email, password: this.state.password };
-        
         axios.post(`${process.env.REACT_APP_URL_API}user/login`, data).then(resp => 
         {
             this.setState({ loading: false });
@@ -76,6 +75,7 @@ class Auth extends Component
                         {/* Senha */}
                         <p className="label">Senha</p>
                         <input 
+                            type="password"
                             placeholder="Digite sua senha..." 
                             onKeyPress={(event) => event.key == 'Enter' ? this.insertOrLogin() : null}
                             onChange={event => this.state.password = event.target.value} />

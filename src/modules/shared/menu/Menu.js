@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function isHome()
 {
   const url = window.location.href;
-  if (url.includes('/')) return true;
+  if (url.includes('/home')) return true;
 
   return false;
 }

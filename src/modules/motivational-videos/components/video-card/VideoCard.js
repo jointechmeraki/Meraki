@@ -4,7 +4,6 @@ import {ContainerCard, ContainerVideo, ContainerHeaderCard, TitleCard, AllComent
 
 export default function VideoCard(props) 
 {
-
     const commentsList = props.comments.map((comment) => 
         <>
             <Comments>
@@ -13,6 +12,7 @@ export default function VideoCard(props)
             </Comments>
         </>
     );
+    
     return (
         <>
            <ContainerCard>

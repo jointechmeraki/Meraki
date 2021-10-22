@@ -11,7 +11,7 @@ export default function Routers() {
     return (
         <div className="container-navigation">
             <Switch>
-                <Route path="/" component={Home} exact />
+                <Route path="/home" component={Home} />
                 <Route path="/diary" component={Diary} />
                 <Route path="/motivacional-videos" component={MotivationalVideos} />
                 <Route path="/breathing" component={Breathing.render} />
