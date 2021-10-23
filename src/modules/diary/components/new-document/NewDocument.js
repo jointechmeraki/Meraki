@@ -50,7 +50,7 @@ class NewDocument extends Component
         })
         .catch(error => 
         {
-            console.log(error);
+            console.error(error);
             this.setState({ loading: false });
             NotificationManager.error('Erro ao inserir o documento.');
         });
@@ -69,7 +69,7 @@ class NewDocument extends Component
         })
         .catch(error => 
         {
-            console.log(error);
+            console.error(error);
             this.setState({ loading: false });
             NotificationManager.error('Erro ao inserir o documento.');
         });

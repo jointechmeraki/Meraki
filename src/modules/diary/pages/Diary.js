@@ -18,8 +18,10 @@ class Diary extends Component
             openModal: false,
             loadingDashboard: false,
             loadingTodayDiary: false,
+            loadingHistoryDiary: false,
             dashboardData: {},
             diaryCurrentData: [],
+            diaryHistoryData: [],
         };
     }
 
@@ -28,6 +30,7 @@ class Diary extends Component
         this.verifyLogin();
         this.getDashboard();
         this.getTodayDiary();
+        this.getHistoryByUserId();
     }
 
     verifyLogin()
@@ -49,7 +52,7 @@ class Diary extends Component
         })
         .catch(error => 
         {
-            console.log(error);
+            console.error(error);
             this.setState({ loadingDashboard: false });
             NotificationManager.error('Erro ao buscar os dados de dashboard.');
         });
@@ -61,15 +64,31 @@ class Diary extends Component
         const userId = window.localStorage.getItem("userId");
         axios.get(`${process.env.REACT_APP_URL_API}diary/getTodayByUserId/${userId}`).then(resp => 
         {
-            console.log(resp.data);
             this.setState({ diaryCurrentData: resp.data });
             this.setState({ loadingTodayDiary: false });
         })
         .catch(error => 
         {
-            console.log(error);
+            console.error(error);
             this.setState({ loadingTodayDiary: false });
             NotificationManager.error('Erro ao buscar a listagem de diários do dia.');
+        });
+    }
+    
+    getHistoryByUserId()
+    {
+        this.setState({ loadingHistoryDiary: true });
+        const userId = window.localStorage.getItem("userId");
+        axios.get(`${process.env.REACT_APP_URL_API}diary/getHistoryByUserId/${userId}`).then(resp => 
+        {
+            this.setState({ diaryHistoryData: resp.data });
+            this.setState({ loadingHistoryDiary: false });
+        })
+        .catch(error => 
+        {
+            console.error(error);
+            this.setState({ loadingHistoryDiary: false });
+            NotificationManager.error('Erro ao buscar a listagem de histórico dos diários.');
         });
     }
 
@@ -129,7 +148,11 @@ class Diary extends Component
                         refreshList={() => this.getTodayDiary()} />
                 
                     {/*Historic list*/}
-                    <ListDocument title="Histórico de documentos" />
+                    <ListDocument 
+                        title="Histórico de documentos"
+                        loading={this.state.loadingHistoryDiary}
+                        diaryList={this.state.diaryHistoryData}
+                        refreshList={() => this.getHistoryByUserId()} />
                 </ContainerPage>
 
                 {/* Modal */}

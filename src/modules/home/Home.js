@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
     ContainerHeader, 
     ContainerHeaderShadow, 
@@ -6,7 +7,6 @@ import {
     LogoMeraki, 
     TitleHeader, 
     SubTitle, 
-    Button, 
     ContainerServices, 
     Title, 
     ContainerListItems, 
@@ -23,28 +23,10 @@ import imgLogo from '../../assets/images/tree-white.svg';
 import imgDiary from '../../assets/images/diary-service.svg';
 import imgVideo from '../../assets/images/video-service.svg';
 import imgBreathing from '../../assets/images/control-service.svg';
+import Button from '../shared/button/Button';
 
-export default function Home() {
-
-    /*window.onscroll = () => {
-        const menu = document.getElementById("menu");
-        if (document.documentElement.scrollTop > 50) {
-            menu.classList.add('menu-all-show');
-        }
-        else {
-            menu.classList.remove('menu-all-show');
-        }
-    }
-
-    window.onresize = () => {
-        if (document.documentElement.offsetWidth <= 800) {
-            document.getElementById('menu-options').classList.add('hide');
-        }
-        else {
-            document.getElementById('menu-options').classList.remove('hide');
-        }
-    }*/
-
+export default function Home() 
+{
     return (
         <>
             <ContainerHeader>
@@ -61,7 +43,7 @@ export default function Home() {
                     <SubTitle>
                         <p>Crie o seu diário, tenha um histórico do andamento do seu quadro e compartilhe tudo isso com seu terapeuta.</p>
                     </SubTitle>
-                    <Button onClick="window.location.href='./plataform/plataform.html'">Começar</Button>
+                    <Link to="/auth"><Button label="começar" marginTop="24px"></Button></Link>
                 </ItemDatas>
             </ContainerHeader>
 
@@ -117,10 +99,6 @@ export default function Home() {
                     <p>contato@meraki.com.br</p>
                 </Contact>
             </ContainerFooter>
-
-
-
-
         </>
     )
 }

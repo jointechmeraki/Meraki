@@ -17,6 +17,8 @@ class MotivationalVideos extends Component
             loading: false,
             listCardVideos: [],
             hasError: false,
+            hasSetFavVideo: false,
+            listFavVid: []
         };
     }
     
@@ -24,6 +26,7 @@ class MotivationalVideos extends Component
     {
         this.verifyLogin();
         this.getVideos();
+        this.getFavVideos();
     }
 
     verifyLogin()
@@ -31,6 +34,37 @@ class MotivationalVideos extends Component
         if (!window.localStorage.getItem("userId"))
         {
             window.location.href = "http://localhost:3000/auth";
+        }
+    }
+
+    getFavVideos()
+    {
+        const userId = window.localStorage.getItem("userId");
+        axios.get(`${process.env.REACT_APP_URL_API}favVideos/${userId}`).then(resp => 
+        {
+            this.setState({ listFavVid: resp.data });
+            this.setFavVideo();
+        })
+        .catch(error => 
+        {
+            console.error(error);
+        });
+    }
+
+    setFavVideo()
+    {
+        if (!this.state.hasSetFavVideo && this.state.listCardVideos.length > 0)
+        {
+            for (const item of this.state.listCardVideos)
+            {
+                const exist = this.state.listFavVid.find(x => x.motivationVideos.id == item.video.id);
+                if (exist)
+                {
+                    item.hasFav = true;
+                }
+            }
+
+            this.setState({ hasSetFavVideo: true });
         }
     }
 
@@ -43,13 +77,12 @@ class MotivationalVideos extends Component
             this.setState(() => ({
                 listCardVideos: resp.data.map(item => item)
             }));
-            console.clear();
-            console.log(this.state.listCardVideos);
             this.setState({ loading : false });
+            this.setFavVideo();
         })
         .catch(error => 
         {
-            console.log(error);
+            console.error(error);
             this.setState({ loading: false });
             this.setState({ hasError: true });
             NotificationManager.error('Erro ao buscar vídeos');
@@ -60,14 +93,7 @@ class MotivationalVideos extends Component
     {
         const response = [];
         this.state.listCardVideos.map(item => {
-            response.push(<>
-                    <VideoCard 
-                        url={item.video.url}
-                        title={item.video.description}
-                        comments={item.comments}>
-                    </VideoCard>
-                </>
-            );
+            response.push(<VideoCard item={item}></VideoCard>);
         });
 
         return response;

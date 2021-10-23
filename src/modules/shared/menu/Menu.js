@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function isHome()
 {
   const url = window.location.href;
-  if (url.includes('/home')) return true;
+  if (url == 'http://localhost:3000/') return true;
 
   return false;
 }

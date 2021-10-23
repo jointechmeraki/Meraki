@@ -61,7 +61,7 @@ class Profile extends Component
         })
         .catch(error => 
         {
-            console.log(error);
+            console.error(error);
             this.setState({ loading: false });
             NotificationManager.error('Falha na alteração.');
         });
@@ -79,7 +79,7 @@ class Profile extends Component
         })
         .catch(error => 
         {
-            console.log(error);
+            console.error(error);
             this.setState({ loading: false });
             NotificationManager.error('Erro ao buscar o usuário.');
         });

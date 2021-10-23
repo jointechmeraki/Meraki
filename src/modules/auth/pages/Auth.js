@@ -45,7 +45,7 @@ class Auth extends Component
         })
         .catch(error => 
         {
-            console.log(error);
+            console.error(error);
             this.setState({ loading: false });
             NotificationManager.error('Login inválido.');
         });
